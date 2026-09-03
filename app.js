@@ -13,6 +13,24 @@ function show(row) {
   document.querySelector('#answerLabel').textContent = row['Ofqual Status'] || 'Official record';
   document.querySelector('#answerTitle').innerHTML = `${esc(row.Name)} <span>${esc(row.Acronym || row['Recognition Number'])}</span>`;
   document.querySelector('#answerCopy').textContent = `Recognition number ${row['Recognition Number']}. The snapshot links this organisation to ${Number(row['Qualification count'] || 0).toLocaleString()} qualifications. This is qualification evidence, not permission for an individual to practise.`;
+  const available = Number(row['Qualification statuses']?.['Available to learners'] || 0);
+  document.querySelector('.confidence small').textContent = `${available.toLocaleString()} available to learners · ${Number(row['Qualification count'] || 0).toLocaleString()} total records`;
+  const facts = [
+    ['Legal name', row['Legal Name']], ['Recognition number', row['Recognition Number']],
+    ['Recognised from', String(row['Ofqual Recognised From'] || '').slice(0, 10)],
+    ['Ofqual status', row['Ofqual Status']], ['CCEA status', row['CCEA Regulation Status']],
+    ['Head office area', [row['Head Office Address Town/City'], row['Head Office Address Country']].filter(Boolean).join(', ')],
+  ].filter(([, value]) => value);
+  document.querySelector('#organisationFacts').innerHTML = facts.map(([key, value]) => `<div><dt>${esc(key)}</dt><dd>${esc(value)}</dd></div>`).join('');
+  const website = document.querySelector('#organisationWebsite');
+  if (/^https?:\/\//.test(row.Website || '')) { website.href = row.Website; website.hidden = false; } else website.hidden = true;
+  const summaries = [
+    ['Status', row['Qualification statuses']], ['Level', row['Qualification levels']],
+    ['Subject', row['Qualification subject areas']], ['Type', row['Qualification types']],
+  ];
+  document.querySelector('#qualificationSummary').innerHTML = summaries.flatMap(([kind, values]) => Object.entries(values || {}).slice(0, 5).map(([name, count]) => `<span><b>${esc(kind)}</b>${esc(name)} <strong>${Number(count).toLocaleString()}</strong></span>`)).join('');
+  document.querySelector('#qualificationExamples').innerHTML = (row['Available qualification examples'] || []).map(item => `<article><strong>${esc(item.title)}</strong><span>${esc(item.number)} · ${esc(item.level || 'Level not published')}</span><small>${esc(item.subject || 'Subject not published')}</small>${/^https?:\/\//.test(item.specification || '') ? `<a href="${esc(item.specification)}" rel="external">Specification ↗</a>` : ''}</article>`).join('') || '<p>No currently available qualification example was included for this organisation.</p>';
+  document.querySelector('#recordDetail').hidden = false;
   document.querySelector('#answer').scrollIntoView({behavior:'smooth', block:'start'});
 }
 

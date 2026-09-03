@@ -39,6 +39,8 @@ nav a,footer a{color:var(--ink);text-decoration:none;font-size:13px;font-weight:
 .confidence-bar i{display:block;width:88%;height:100%;background:var(--yellow);border-radius:8px}
 .answer-meta{display:flex;gap:22px;align-items:center;flex-wrap:wrap;padding:15px 2px;color:#74827d;font-size:11px}
 .answer-meta button{margin-left:auto;background:none;border:0;color:var(--green);font-weight:750;cursor:pointer}
+.record-detail{display:grid;grid-template-columns:.85fr 1.15fr;gap:28px;margin-top:18px;padding:28px;background:var(--paper);border:1px solid var(--line)}
+.record-detail[hidden]{display:none}.record-detail dl{margin:12px 0}.record-detail dl div{display:flex;justify-content:space-between;gap:15px;border-bottom:1px solid var(--line);padding:8px 0;font-size:12px}.record-detail dt{color:var(--muted)}.record-detail dd{margin:0;text-align:right;font-weight:700}.official-link{display:inline-block;color:var(--green);font-size:12px;font-weight:800;margin-top:8px}.summary-chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px}.summary-chips span{background:#e8efe9;border:1px solid #cbd8ce;padding:7px 9px;font-size:11px}.summary-chips b{color:#8b6429;margin-right:5px}.summary-chips strong{margin-left:5px}.qualification-list{grid-column:1/-1}.qualification-list>div:nth-child(2){display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:14px}.qualification-list article{display:grid;grid-template-columns:1fr auto;gap:3px 12px;padding:12px;border:1px solid var(--line);background:white}.qualification-list article strong{font-size:13px}.qualification-list article span,.qualification-list article small{font-size:10px;color:var(--muted)}.qualification-list article a{grid-column:2;grid-row:1/-1;align-self:center;font-size:10px;font-weight:800;color:var(--green)}
 .evidence{padding-bottom:105px}
 .evidence-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
 .source-card{background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:25px}
@@ -95,6 +97,7 @@ footer{background:#e5e5dc}
 .confidence{border:0;border-top:1px solid #ffffff33;width:auto;margin-top:26px;padding:18px 0 0}
 .answer-meta{gap:8px;line-height:1.2}
 .answer-meta button{margin-left:0}
+.record-detail{grid-template-columns:1fr;padding:18px}.qualification-list>div:nth-child(2){grid-template-columns:1fr}.qualification-list article{grid-template-columns:1fr}.qualification-list article a{grid-column:1;grid-row:auto}
 .evidence-grid,.browse-grid{grid-template-columns:1fr 1fr}
 .source-card{padding:18px}
 .source-date{display:none}
